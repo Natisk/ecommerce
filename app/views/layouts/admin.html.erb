@@ -34,7 +34,7 @@
               <% end %>
             </li>
             <li>
-              <%= link_to admin_index_path, class: 'block px-4 py-2 hover:rouded hover:bg-gray-700' do %>
+              <%= link_to admin_categories_path, class: 'block px-4 py-2 hover:rouded hover:bg-gray-700' do %>
                 <%= icon 'fa-solid', 'list', class: 'mr-2' %>
                 <span class="md-inline-block">Categories</span>
               <% end %>
@@ -49,8 +49,18 @@
         </div>
       </nav>
 
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <% if notice.present? %>
+        <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block"
+           id="notice">
+          <%= notice %>
+        </p>
+      <% end %>%
+      <% if alert.present? %>
+        <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block"
+           id="alert">
+          <%= alert %>
+        </p>
+      <% end %>
       <%= yield %>
     </main>
   </body>
