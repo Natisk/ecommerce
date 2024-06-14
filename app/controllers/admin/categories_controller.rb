@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::CategoriesController < ApplicationController
+class Admin::CategoriesController < AdminController
   before_action :set_category, only: %i[show edit update destroy]
 
   # GET /admin/categories or /admin/categories.json
