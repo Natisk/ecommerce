@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# class to set CRUD methods for Categories in admin dashboard
 class Admin::CategoriesController < AdminController
   before_action :set_category, only: %i[show edit update destroy]
 
@@ -9,8 +10,7 @@ class Admin::CategoriesController < AdminController
   end
 
   # GET /admin/categories/1 or /admin/categories/1.json
-  def show
-  end
+  def show; end
 
   # GET /admin/categories/new
   def new
@@ -18,8 +18,7 @@ class Admin::CategoriesController < AdminController
   end
 
   # GET /admin/categories/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /admin/categories or /admin/categories.json
   def create

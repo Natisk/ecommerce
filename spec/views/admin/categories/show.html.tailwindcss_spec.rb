@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe "admin/categories/show", type: :view do
   before(:each) do
-    assign(:admin_category, Admin::Category.create!(
+    assign(:admin_category, Category.create!(
       name: "Name",
       description: "MyText"
     ))

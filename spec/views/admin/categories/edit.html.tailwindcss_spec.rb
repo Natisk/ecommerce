@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe "admin/categories/edit", type: :view do
   let(:admin_category) {
-    Admin::Category.create!(
+    Category.create!(
       name: "MyString",
       description: "MyText"
     )
@@ -16,7 +18,6 @@ RSpec.describe "admin/categories/edit", type: :view do
     render
 
     assert_select "form[action=?][method=?]", admin_category_path(admin_category), "post" do
-
       assert_select "input[name=?]", "admin_category[name]"
 
       assert_select "textarea[name=?]", "admin_category[description]"

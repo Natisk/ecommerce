@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe "admin/categories/index", type: :view do
   before(:each) do
     assign(:admin_categories, [
-      Admin::Category.create!(
+      Category.create!(
         name: "Name",
         description: "MyText"
       ),
-      Admin::Category.create!(
+      Category.create!(
         name: "Name",
         description: "MyText"
       )
