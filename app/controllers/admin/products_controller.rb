@@ -6,7 +6,7 @@ class Admin::ProductsController < AdminController
 
   # GET /admin/products or /admin/products.json
   def index
-    @admin_products = Product.all
+    @admin_products = Product.includes(:category)#includes(:images)
   end
 
   # GET /admin/products/1 or /admin/products/1.json
@@ -66,6 +66,6 @@ class Admin::ProductsController < AdminController
 
     # Only allow a list of trusted parameters through.
     def admin_product_params
-      params.require(:product).permit(:name, :description, :price, :category_id, :active)
+      params.require(:product).permit(:name, :description, :price, :category_id, :active, images: [])
     end
 end
