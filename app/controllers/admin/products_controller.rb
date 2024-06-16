@@ -72,7 +72,7 @@ class Admin::ProductsController < AdminController
     end
 
     def attach_images(ctrl_params, record)
-      return if ctrl_params[:product][:images].reject(&:present?).empty?
+      return if ctrl_params[:product][:images].reject(&:blank?).empty?
 
       ctrl_params[:product][:images].each do |image|
         record.images.attach(image)
