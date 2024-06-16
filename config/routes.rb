@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
-Rails.application.routes.draw do
+Rails.application.routes.draw do  
   devise_for :admins
 
   resources :admin, only: %i[index]
 
   namespace :admin do
-    resources :products
+    resources :products do
+      resources :stocks
+    end
     resources :categories
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
