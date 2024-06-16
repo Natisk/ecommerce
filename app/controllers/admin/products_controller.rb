@@ -39,6 +39,8 @@ class Admin::ProductsController < AdminController
   def update
     respond_to do |format|
       if @admin_product.update(admin_product_params)
+        attach_images(params, @admin_product)
+
         format.html { redirect_to admin_product_url(@admin_product), notice: "Product was successfully updated." }
         format.json { render :show, status: :ok, location: @admin_product }
       else
@@ -66,6 +68,14 @@ class Admin::ProductsController < AdminController
 
     # Only allow a list of trusted parameters through.
     def admin_product_params
-      params.require(:product).permit(:name, :description, :price, :category_id, :active, images: [])
+      params.require(:product).permit(:name, :description, :price, :category_id, :active)
+    end
+
+    def attach_images(ctrl_params, record)
+      return if ctrl_params[:product][:images].reject(&:present?).empty?
+
+      ctrl_params[:product][:images].each do |image|
+        record.images.attach(image)
+      end
     end
 end
