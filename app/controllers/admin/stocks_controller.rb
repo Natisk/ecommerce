@@ -6,7 +6,7 @@ class Admin::StocksController < AdminController
 
   # GET /stocks or /stocks.json
   def index
-    @stocks = Stock.all
+    @stocks = @product.stocks
   end
 
   # GET /stocks/1 or /stocks/1.json
