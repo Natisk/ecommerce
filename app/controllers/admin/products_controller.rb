@@ -6,7 +6,7 @@ class Admin::ProductsController < AdminController
 
   # GET /admin/products or /admin/products.json
   def index
-    @admin_products = Product.includes(:category)#includes(:images)
+    @admin_products = Product.includes(:category)
   end
 
   # GET /admin/products/1 or /admin/products/1.json
