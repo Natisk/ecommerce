@@ -39,8 +39,7 @@ class Admin::StocksController < AdminController
   def update
     respond_to do |format|
       if @stock.update(stock_params)
-        debugger
-        format.html { redirect_to admin_product_stock_url(@stock), notice: "Stock was successfully updated." }
+        format.html { redirect_to admin_product_stock_url(@product, @stock), notice: "Stock was successfully updated." }
         format.json { render :show, status: :ok, location: @stock }
       else
         format.html { render :edit, status: :unprocessable_entity }

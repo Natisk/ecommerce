@@ -1,7 +1,7 @@
 <div class="md:w-2/3 w-full">
   <h1 class="font-bold text-4xl">New stock</h1>
 
-  <%= render "form", stock: @stock %>
+  <%= render "form", stock: @stock, product: @product %>
 
   <%= link_to "Back to stocks", 
               admin_product_stocks_path, 
