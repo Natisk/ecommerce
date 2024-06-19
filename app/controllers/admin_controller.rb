@@ -28,6 +28,5 @@ class AdminController < ApplicationController
       avg_sale: todays_orders['total_average'],
       per_sale: todays_orders['order_products_count']
     }
-    end
   end
 end
