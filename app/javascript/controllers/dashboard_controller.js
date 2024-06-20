@@ -5,10 +5,6 @@ Chart.register(...registerables)
 
 // Connects to data-controller="dashboard"
 export default class extends Controller {
-  // connect() {
-  //   console.log("Hello hallo pryvit");
-  // };
-
   initialize() {
     const data = [10, 20, 30, 40, 50, 60, 70];
     const labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];

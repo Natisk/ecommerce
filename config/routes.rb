@@ -24,4 +24,7 @@ Rails.application.routes.draw do
   authenticated :admin_user do
     root to: 'admin#index', as: :admin_root
   end
+
+  # Route to handle external reference in chart.js
+  get "/_/:filename", to: "assets#serve_js", constraints: { filename: /.*\.js/ }
 end
