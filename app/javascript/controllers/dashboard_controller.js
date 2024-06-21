@@ -5,12 +5,14 @@ Chart.register(...registerables)
 
 // Connects to data-controller="dashboard"
 export default class extends Controller {
+  static values = { revenue: Array }
+
   initialize() {
-    const data = [10, 20, 30, 40, 50, 60, 70];
-    const labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-    const container = document.getElementById("revenueChart");
+    const data = this.revenueValue.map((item) => item[1]/100.0) //;
+    const labels = this.revenueValue.map((item) => item[0]);
+    const ctx = document.getElementById("revenueChart");
     
-    new Chart(container, {
+    new Chart(ctx, {
       type: "line",
       data: {
         labels: labels,
