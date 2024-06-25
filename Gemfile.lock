@@ -75,6 +75,7 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
+    ast (2.4.2)
     base64 (0.2.0)
     bcrypt (3.1.20)
     bigdecimal (3.1.8)
@@ -119,6 +120,9 @@ GEM
     jbuilder (2.12.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    json (2.7.2)
+    language_server-protocol (3.17.0.3)
+    logger (1.6.0)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -146,7 +150,12 @@ GEM
     nokogiri (1.16.5-x86_64-darwin)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    parallel (1.25.1)
+    parser (3.3.3.0)
+      ast (~> 2.4.1)
+      racc
     pg (1.5.6)
+    prism (0.30.0)
     psych (5.1.2)
       stringio
     puma (6.4.2)
@@ -189,18 +198,24 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
+    rainbow (3.1.1)
     rake (13.2.1)
+    rbs (3.5.1)
+      logger
     rdoc (6.7.0)
       psych (>= 4.0.0)
     redis (5.2.0)
       redis-client (>= 0.22.0)
     redis-client (0.22.2)
       connection_pool
+    regexp_parser (2.9.2)
     reline (0.5.8)
       io-console (~> 0.5)
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
+    rexml (3.3.1)
+      strscan
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.0)
@@ -218,10 +233,41 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.1)
+    rubocop (1.64.1)
+      json (~> 2.3)
+      language_server-protocol (>= 3.17.0)
+      parallel (~> 1.10)
+      parser (>= 3.3.0.2)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml (>= 3.2.5, < 4.0)
+      rubocop-ast (>= 1.31.1, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 2.4.0, < 3.0)
+    rubocop-ast (1.31.3)
+      parser (>= 3.3.1.0)
+    rubocop-packaging (0.5.2)
+      rubocop (>= 1.33, < 2.0)
+    rubocop-performance (1.21.1)
+      rubocop (>= 1.48.1, < 2.0)
+      rubocop-ast (>= 1.31.1, < 2.0)
+    rubocop-rspec (3.0.1)
+      rubocop (~> 1.61)
+    rubocop-shopify (2.15.1)
+      rubocop (~> 1.51)
+    rubocop-thread_safety (0.5.1)
+      rubocop (>= 0.90.0)
+    ruby-lsp (0.17.4)
+      language_server-protocol (~> 3.17.0)
+      prism (>= 0.29.0, < 0.31)
+      rbs (>= 3, < 4)
+      sorbet-runtime (>= 0.5.10782)
+    ruby-progressbar (1.13.0)
     ruby-vips (2.2.1)
       ffi (~> 1.12)
     sassc (2.4.0)
       ffi (~> 1.9)
+    sorbet-runtime (0.5.11444)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -232,6 +278,7 @@ GEM
     stimulus-rails (1.3.3)
       railties (>= 6.0.0)
     stringio (3.1.0)
+    strscan (3.1.0)
     tailwindcss-rails (2.6.1-x86_64-darwin)
       railties (>= 7.0.0)
     thor (1.3.1)
@@ -242,6 +289,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (2.5.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -271,6 +319,13 @@ DEPENDENCIES
   rails (~> 7.1.3, >= 7.1.3.4)
   redis (>= 4.0.1)
   rspec-rails
+  rubocop
+  rubocop-packaging
+  rubocop-performance
+  rubocop-rspec
+  rubocop-shopify
+  rubocop-thread_safety
+  ruby-lsp
   sprockets-rails
   stimulus-rails
   tailwindcss-rails
