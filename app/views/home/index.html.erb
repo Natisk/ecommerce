@@ -4,7 +4,7 @@
   <%= link_to "Shop now", root_path, class: "bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded" %>
 </div>
 
-<div class="flex flex-wrap justify-center items-center gap-10">
+<div class="flex flex-wrap justify-center items-center gap-10 mt-10">
   <% @main_categories.each do |category| %>
     <%= link_to category_path(category.id) do %>
       <div class="flex flex-col mb-4">
