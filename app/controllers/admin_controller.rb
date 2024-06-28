@@ -33,10 +33,10 @@ class AdminController < ApplicationController
     initial_stat_hash = day_names.map { |day| [day, 0] }.to_h # { [Sunday: 0], [Monday: 0], [Tuesday: 0], ....}
 
     orders_by_day = Order
-      .select("EXTRACT(DOW FROM created_at) AS day_of_week, SUM(total) AS total_sum")
-      .where("created_at > ?", Time.now.midnight - 7.days)
-      .group("day_of_week")
-      .order("day_of_week")
+                    .select('EXTRACT(DOW FROM created_at) AS day_of_week, SUM(total) AS total_sum')
+                    .where('created_at > ?', Time.now.midnight - 7.days)
+                    .group('day_of_week')
+                    .order('day_of_week')
 
     orders_by_day = orders_by_day.map { |order| [day_names[order.day_of_week.to_i], order.total_sum.to_f] }.to_h
 
