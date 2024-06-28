@@ -1,3 +1,20 @@
-<h1>Home</h1>
-<%= icon('fa-brands', 'font-awesome') %>
-<%= icon('fa-solid', 'user-secret') %>
+<div class="bg-gray-800 text-white text-center py-20">
+  <h1 class="text-5-xl font-bold mb-4">Welcome to ecommerce</h1>
+  <p class="text-xl mb-8">Discover this app for you!</p>
+  <%= link_to "Shop now", root_path, class: "bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded" %>
+</div>
+
+<div class="flex flex-wrap justify-center items-center gap-10">
+  <% @main_categories.each do |category| %>
+    <%= link_to category_path(category.id) do %>
+      <div class="flex flex-col mb-4">
+        <h2 class="text-gray-800 font-medium text-lg text-center mb-6">
+          <%= category.name %>
+        </h2>
+        <%= category.image.present? ? 
+           image_tag(category.image, class: "max-w-lg") : 
+           image_tag("http://via.placeholder.com/300") %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

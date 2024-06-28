@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     root to: 'admin#index', as: :admin_root
   end
 
+  resources :categories, only: %i[index show]
+
   # Route to handle external reference in chart.js
-  get "/_/:filename", to: "assets#serve_js", constraints: { filename: /.*\.js/ }
+  get '/_/:filename', to: 'assets#serve_js', constraints: { filename: /.*\.js/ }
 end
