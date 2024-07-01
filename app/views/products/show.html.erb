@@ -6,7 +6,9 @@
     <% end %>
   </div>
 
-  <div class="flex flex-col items-start max-w-sm">
+  <div data-controller="products"
+       data-products-product-value="<%= @product.to_json %>"
+       class="flex flex-col items-start max-w-sm">
     <h1 class="font-bold text-4xl uppercase">
       <%= @product.name %>
     </h1>
@@ -20,7 +22,8 @@
       <p class="uppercase text-lg">Size</p>
       <% @product.stocks.each do |stock| %>
         <% if stock.amount > 0 %>
-          <button value="<%= stock.size %>"
+          <button data-action="click->products#selectSize"
+                  value="<%= stock.size %>"
                   class="bg-green-200 text-gray-800 font-semibold py-2 px-4 rounded hover:bg-green-300 
                         focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                   >
@@ -37,7 +40,11 @@
         <% end %>
       <% end %>
     </div>
-    <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent font-medium rouded-md 
+
+    <div id="selected-size"></div>
+
+    <button data-action="click->products#addToCart"
+            class="inline-flex items-center justify-center px-5 py-3 border border-transparent font-medium rouded-md 
                   text-white bg-gray-600 hover:bg-gray-700 
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
             >
