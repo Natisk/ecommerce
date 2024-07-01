@@ -5,4 +5,37 @@
       <%= image_tag(image, class: "w-auto h-64") %>
     <% end %>
   </div>
+
+  <div class="flex flex-col items-start max-w-sm">
+    <h1 class="font-bold text-4xl uppercase">
+      <%= @product.name %>
+    </h1>
+    <p class="text-2xl mt-4">
+      $<%= (@product.price/100.0).to_s%>
+    </p>
+    <p class="text-md py-8">
+      <%= @product.description %>
+    </p>
+    <div class="my-8">
+      <p class="uppercase text-lg">Size</p>
+      <% @product.stocks.each do |stock| %>
+        <% if stock.amount > 0 %>
+          <button value="<%= stock.size %>"
+                  class="bg-green-200 text-gray-800 font-semibold py-2 px-4 rounded hover:bg-green-300 
+                        focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                  >
+                    <%= stock.size %>
+                  </button>
+        <% else %>
+          <button disabled
+                  value="<%= stock.size %>"
+                  class="disabled:bg-pink-100 text-gray-800 font-semibold py-2 px-4 rounded 
+                        focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
+                  >
+                    <%= stock.size %>
+                  </button>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
