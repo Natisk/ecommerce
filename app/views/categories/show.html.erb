@@ -12,7 +12,7 @@
       </p>
     <% else %>
       <% @products.each do |p| %>
-        <%= link_to root_path do %>
+        <%= link_to product_path(p) do %>
           <div class="max-w-xs flex flex-col p-4 justify-center items-center">
             <%= p.images.first ? 
                 image_tag(p.images.first.variant(:medium), class: "rounded") : 

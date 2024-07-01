@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   end
 
   resources :categories, only: %i[index show]
+  resources :products, only: %i[index show]
 
   # Route to handle external reference in chart.js
   get '/_/:filename', to: 'assets#serve_js', constraints: { filename: /.*\.js/ }
