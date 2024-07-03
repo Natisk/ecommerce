@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :categories, only: %i[index show]
   resources :products, only: %i[index show]
 
+  post 'checkout' => 'checkouts/create'
   get 'cart' => 'carts#show'
 
   # Route to handle external reference in chart.js
