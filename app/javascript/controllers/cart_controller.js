@@ -61,10 +61,10 @@ export default class extends Controller {
       boyd: JSON.stringify(payload)
     }).then(response => {
       if(response.ok) {
-        window.location.href = body.url
+        window.location.href = response.body.url
       } else {
-        errorEl = documentCreate("div")
-        errorEl.innerText = `There was an error processing your order. ${body.error}`
+        let errorEl = document.createElement("div")
+        errorEl.innerText = `There was an error processing your order. ${response.body.error}`
         let errorContainer = document.getElementById("errorContainer")
         errorContainer.appendChild(errorEl)
       }
