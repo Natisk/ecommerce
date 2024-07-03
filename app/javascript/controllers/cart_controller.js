@@ -29,4 +29,9 @@ export default class extends Controller {
     let totalContainer = document.getElementById("total")
     totalContainer.appendChild(totalEl)
   }
+
+  clear() {
+    localStorage.removeItem("cart")
+    window.location.reload
+  }
 }
