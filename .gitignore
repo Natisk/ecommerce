@@ -41,4 +41,4 @@
 .idea
 .vscode
 
-/config/credentials/development.key
+/config/credentials/*.key
