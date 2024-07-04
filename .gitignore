@@ -40,3 +40,5 @@
 # editors settings
 .idea
 .vscode
+
+/config/credentials/development.key
