@@ -20,7 +20,7 @@ module Stripe
         }
       )
 
-      { result: session.url }
+      { url: session.url }
     end
 
     private
