@@ -8,7 +8,7 @@ module Stripe
     end
 
     def call
-      Stripe.api_key = Rails.application.credentials.stripe.stripe_api_key
+      Stripe.api_key = Rails.application.credentials.stripe.secret_key
 
       session = Stripe::Checkout::Session.create(
         mode: 'payment',
@@ -29,16 +29,17 @@ module Stripe
 
     def line_items
       cart.map do |item|
-        product = Product.includes(:stocks).find_by(id: item['id'])
-        stock = product.stocks.where('size = ?', item['size'])
+        product = ::Product.find_by(id: item['id'])
+        stock = product.stocks.where('size = ?', item['size']).take
 
-        if stock.count < item['quantity'].to_i
-          return "error: Not enough stock for #{item.name} in size #{item.size}. Only #{stock.count}."
-        end
+        # TODO: handle errors
+        # if stock.count < item['quantity'].to_i
+        #   return "error: Not enough stock for #{item.name} in size #{item.size}. Only #{stock.count}."
+        # end
 
         {
           quantity: item['quantity'].to_i,
-          price_date: {
+          price_data: {
             product_data: {
               name: item['name'],
               metadata: { product_id: product.id, size: item['size'], product_stock_id: stock.id }

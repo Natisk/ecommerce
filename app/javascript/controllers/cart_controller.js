@@ -58,15 +58,19 @@ export default class extends Controller {
         "Content-Type": "application/json",
         "X-CSRF-Token": csrfToken
       },
-      boyd: JSON.stringify(payload)
+      body: JSON.stringify(payload)
     }).then(response => {
       if(response.ok) {
-        window.location.href = response.body.url
+        response.json().then(body => {
+          window.location.href = body.url
+        })
       } else {
-        let errorEl = document.createElement("div")
-        errorEl.innerText = `There was an error processing your order. ${response.body.error}`
-        let errorContainer = document.getElementById("errorContainer")
-        errorContainer.appendChild(errorEl)
+        response.json().then(body => {
+          const errorEl = document.createElement("div")
+          errorEl.innerText = `There was an error processing your order. ${body.error}`
+          let errorContainer = document.getElementById("errorContainer")
+          errorContainer.appendChild(errorEl)
+        })
       }
     })
   }

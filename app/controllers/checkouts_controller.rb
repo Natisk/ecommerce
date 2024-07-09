@@ -2,8 +2,8 @@
 
 class CheckoutsController < ApplicationController
   def create
-    Stripe::CheckoutService.new(params[:cart]).call
+    result = Stripe::CheckoutService.new(params[:cart]).call
 
-    render json: { error: 'It works but empty' }, status: 404
+    render json: result, status: 200
   end
 end
