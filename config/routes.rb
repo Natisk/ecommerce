@@ -33,4 +33,8 @@ Rails.application.routes.draw do
 
   # Route to handle external reference in chart.js
   get '/_/:filename', to: 'assets#serve_js', constraints: { filename: /.*\.js/ }
+
+  # Stripe routes
+  get 'stripe_payment_success' => 'checkouts#success'
+  get 'stripe_payment_cancel' => 'checkouts#cancel'
 end

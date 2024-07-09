@@ -6,4 +6,12 @@ class CheckoutsController < ApplicationController
 
     render json: result, status: 200
   end
+
+  def success
+    render :success
+  end
+
+  def cancel
+    render :cancel
+  end
 end
