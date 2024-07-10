@@ -37,4 +37,5 @@ Rails.application.routes.draw do
   # Stripe routes
   get 'stripe_payment_success' => 'checkouts#success'
   get 'stripe_payment_cancel' => 'checkouts#cancel'
+  post 'stripe_webhooks' => 'webhooks#stripe'
 end
