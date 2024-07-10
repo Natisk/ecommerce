@@ -14,10 +14,10 @@ class WebhooksController < ApplicationController
       event = Stripe::Webhook.construct_event(payload, sig_header, endpoint_secret)
     rescue JSON::ParserError => e
       # send to system monitor(rollbar, honeybadger etc.)
-      render json: { message: e.message }, status: 500
+      render json: { message: e.message }, status: 500 and return
     rescue Stripe::SignatureVerificationError => e
       # send to system monitor(rollbar, honeybadger etc.)
-      render json: { message: e.message }, status: 500
+      render json: { message: e.message }, status: 500 and return
     end
 
     case event.type
