@@ -41,13 +41,7 @@ class WebhooksController < ApplicationController
                                                         })
       line_items = full_session.line_items
       line_items['data'].each do |item|
-        p '--------------------- item -------------------------'
-        pp item
-        p '===================================================='
         product = Stripe::Product.retrieve(item['price']['product'])
-        p '----------------------- product -----------------------'
-        pp product
-        p '======================================================='
         product_id = product['metadata']['product_id'].to_i
         stock_id = product['metadata']['product_stock_id'].to_i
 
