@@ -5,7 +5,7 @@ class Admin::OrdersController < AdminController
 
   # GET /orders or /orders.json
   def index
-    @orders = Order.order(created_at: :desc)
+    @pagy, @orders = pagy(Order.order(created_at: :desc))
   end
 
   # GET /orders/1 or /orders/1.json
