@@ -6,7 +6,7 @@ class Admin::ProductsController < AdminController
 
   # GET /admin/products or /admin/products.json
   def index
-    @admin_products = Product.includes(:category, :images_attachments, :images_blobs)
+    @pagy, @admin_products = pagy(Product.includes(:category, :images_attachments, :images_blobs))
   end
 
   # GET /admin/products/1 or /admin/products/1.json
@@ -26,7 +26,7 @@ class Admin::ProductsController < AdminController
 
     respond_to do |format|
       if @admin_product.save
-        format.html { redirect_to admin_product_url(@admin_product), notice: "Product was successfully created." }
+        format.html { redirect_to admin_product_url(@admin_product), notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @admin_product }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,7 +41,7 @@ class Admin::ProductsController < AdminController
       if @admin_product.update(admin_product_params)
         attach_images(params, @admin_product)
 
-        format.html { redirect_to admin_product_url(@admin_product), notice: "Product was successfully updated." }
+        format.html { redirect_to admin_product_url(@admin_product), notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @admin_product }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,27 +55,28 @@ class Admin::ProductsController < AdminController
     @admin_product.destroy!
 
     respond_to do |format|
-      format.html { redirect_to admin_products_url, notice: "Product was successfully destroyed." }
+      format.html { redirect_to admin_products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_admin_product
-      @admin_product = Product.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def admin_product_params
-      params.require(:product).permit(:name, :description, :price, :category_id, :active)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_admin_product
+    @admin_product = Product.find(params[:id])
+  end
 
-    def attach_images(ctrl_params, record)
-      return if ctrl_params[:product][:images].reject(&:blank?).empty?
+  # Only allow a list of trusted parameters through.
+  def admin_product_params
+    params.require(:product).permit(:name, :description, :price, :category_id, :active)
+  end
 
-      ctrl_params[:product][:images].each do |image|
-        record.images.attach(image)
-      end
+  def attach_images(ctrl_params, record)
+    return if ctrl_params[:product][:images].reject(&:blank?).empty?
+
+    ctrl_params[:product][:images].each do |image|
+      record.images.attach(image)
     end
+  end
 end
