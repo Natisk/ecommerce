@@ -6,7 +6,14 @@ class Admin::ProductsController < AdminController
 
   # GET /admin/products or /admin/products.json
   def index
-    @pagy, @admin_products = pagy(Product.includes(:category, :images_attachments, :images_blobs))
+    if params[:query]
+      @query = params[:query]
+      result = ::SearchService.new(::Product, @query).call
+
+      @pagy, @admin_products = pagy(result)
+    else
+      @pagy, @admin_products = pagy(Product.includes(:category, :images_attachments, :images_blobs))
+    end
   end
 
   # GET /admin/products/1 or /admin/products/1.json
