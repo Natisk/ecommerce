@@ -10,6 +10,6 @@ class SearchService
   end
 
   def call
-    model.where('name LIKE ?', "%#{query}%")
+    model.where('name ILIKE ?', "%#{query}%")
   end
 end
