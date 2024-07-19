@@ -6,5 +6,9 @@
     <%= link_to "New order", new_admin_order_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <%= render 'orders', orders: @orders, pagy: @pagy %>
+  <h2>Unfulfilled Orders</h2>
+  <%= render 'orders', orders: @orders_unfulfilled, pagy: @pagy_unfulfilled %>
+  
+  <h2>Fulfilled Orders</h2>
+  <%= render 'orders', orders: @orders_fulfilled, pagy: @pagy_fulfilled %>
 </div>

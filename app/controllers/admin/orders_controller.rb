@@ -5,7 +5,8 @@ class Admin::OrdersController < AdminController
 
   # GET /orders or /orders.json
   def index
-    @pagy, @orders = pagy(Order.order(created_at: :desc))
+    @pagy_unfulfilled, @orders_unfulfilled = pagy(Order.where(fulfilled: false).order(created_at: :desc))
+    @pagy_fulfilled, @orders_fulfilled = pagy(Order.where(fulfilled: true).order(created_at: :desc))
   end
 
   # GET /orders/1 or /orders/1.json
