@@ -5,8 +5,8 @@
       <%= @category.name %>
     </h2>
     <%= form_with url: category_path(@category), method: :get, class: "flex flex-col" do |form| %>
-      <%= form.number_field :min, placeholder: "Min Price", class: "border border-gray-800 rounded-md p-2 w-32" %>
-      <%= form.number_field :max, placeholder: "Max Price", class: "border border-gray-800 rounded-md p-2 mt-2 w-32" %>
+      <%= form.number_field :min, value: params[:min], placeholder: "Min Price", class: "border border-gray-800 rounded-md p-2 w-32" %>
+      <%= form.number_field :max, value: params[:max], placeholder: "Max Price", class: "border border-gray-800 rounded-md p-2 mt-2 w-32" %>
       <%= form.submit "Filter", class: "bg-gray-800 text-white rounded-md p-2 mt-2 cursor-pointer" %>
     <% end %>
   </div>
