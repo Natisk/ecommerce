@@ -8,5 +8,8 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     @products = @category.products
+
+    @products = @products.where('price >= ?', params[:min]) if params[:min].presence
+    @products = @products.where('price <= ?', params[:max]) if params[:max].presence
   end
 end
